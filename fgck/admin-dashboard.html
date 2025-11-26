@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - FGCK Nazareth Church</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+<p>Welcome Admin! You can view reports below:</p>
+
+<!-- LOGOUT BUTTON -->
+<button id="logoutBtn">Logout</button>
+
+<!-- MEMBERS TABLE -->
+<h2>Members</h2>
+<table id="memberTable" border="1">
+  <tr><th>Name</th><th>Phone</th><th>Ministry</th><th>Status</th></tr>
+</table>
+<button id="exportMembersPdf">Export PDF</button>
+<button id="exportMembersExcel">Export Excel</button>
+
+<!-- FINANCES TABLE -->
+<h2>Finances</h2>
+<table id="financeTable" border="1">
+  <tr><th>Date</th><th>Category</th><th>Amount</th><th>Voucher</th><th>backToTopBtn</th></tr>
+</table>
+<button id="exportFinancePdf">Export PDF</button>
+<button id="exportFinanceExcel">Export Excel</button>
+
+<!-- ASSETS TABLE -->
+<h2>Assets</h2>
+<table id="assetsTable" border="1">
+  <tr><th>Name</th><th>Category</th><th>Value</th><th>Status</th></tr>
+</table>
+<button id="exportAssetsPdf">Export PDF</button>
+<button id="exportAssetsExcel">Export Excel</button>
+
+<!-- Optional: Chart canvas -->
+<h2>Finances Chart</h2>
+<canvas id="financeChart" width="600" height="300"></canvas>
+
+
+<!-- Load Firebase FIRST -->
+<script type="module" src="firebase.js"></script>
+
+<!-- Load your main script AFTER firebase.js -->
+
+<script type="module" src="script.js"></script>
+
+<!-- Other libraries (optional) -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+</body>
+</html>

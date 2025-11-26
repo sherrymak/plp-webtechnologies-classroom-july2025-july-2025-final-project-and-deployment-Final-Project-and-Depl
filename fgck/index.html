@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FGCK Nazareth Church</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ===== HEADER & BANNER ===== -->
+
+<body class="home-page">
+
+<header class="header-banner">
+  <div class="overlay"></div>
+
+  <div class="top-bar">
+    <div class="logo">
+      <img src="images/church-logo.jpg" alt="Church Logo">
+      <h1>FGCK Nazareth</h1>
+    </div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="ministries.html">Ministries</a></li>
+        <li><a href="contact.html">contact us</a></li>
+        <li><a href="admin.html">admin</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="banner-text">
+    <h2>Welcome to FGCK Nazareth Church</h2>
+    <p>Your journey with Christ starts here</p>
+  </div>
+</header>
+
+
+ 
+  <!-- ===== MAIN BODY ===== -->
+
+  <main class="main-content">
+
+    <!-- ===== PASTOR’S MESSAGE PREVIEW ===== -->
+<section class="pastor-preview fade-in">
+  <div class="pastor-preview-container">
+
+    <div class="pastor-preview-image">
+      <img src="images/pstNjue.jpg" alt="Pastor Joseph Njiru Njue">
+    </div>
+
+    <div class="pastor-preview-content">
+      <h2>A Word from Our Pastor</h2>
+      <p>
+        Welcome to FGCK Nazareth Church. We believe that God has a purpose for your life,
+        and we are honored to walk with you in your spiritual journey. At Nazareth, you
+        will find a family that worships together, grows together, and serves together.
+      </p>
+
+      <p>
+        I invite you to discover more about our mission and heart for God as a church.
+      </p>
+
+      <a href="about.html#pastor-message" class="btn">Read More</a>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Daily Bible Verse -->
+
+    <!-- ===== EMBEDDED BIBLE WIDGET WITH NAVIGATION ===== -->
+<section class="bible-widget">
+  <h2>Daily Verse & Bible Reader</h2>
+
+  <!-- Daily Verse -->
+  <div class="daily-verse">
+    <p id="dailyVerse"></p>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="nav-buttons">
+    <button id="prevVerse">Previous</button>
+    <button id="nextVerse">Next</button>
+  </div>
+
+  <!-- Verse Search -->
+  <div class="bible-search">
+  <input type="text" id="verseInput" placeholder="Enter verse (e.g., John 3:16)" />
+    <button id="searchVerse">Read Verse</button>
+  </div>
+
+  <!-- Bible Display -->
+  <iframe id="bibleFrame" width="100%" height="400" style="border:1px solid #ccc;" frameborder="0"></iframe>
+</section>
+
+<script>
+// ===== LIST OF VERSES =====
+const verses = [
+  { text: "For God so loved the world...", reference: "John 3:16" },
+  { text: "I can do all this through him who gives me strength.", reference: "Philippians 4:13" },
+  { text: "The Lord is my shepherd, I lack nothing.", reference: "Psalm 23:1" },
+  { text: "Trust in the Lord with all your heart...", reference: "Proverbs 3:5" },
+  { text: "Commit to the Lord whatever you do, and he will establish your plans.", reference: "Proverbs 16:3" },
+  { text: "The Lord is compassionate and gracious, slow to anger, abounding in love.", reference: "Psalm 103:8" },
+  { text: "Be strong and courageous. Do not be afraid; do not be discouraged.", reference: "Joshua 1:9" }
+];
+
+// ===== CURRENT INDEX =====
+let currentIndex = new Date().getDate() % verses.length;
+
+// ===== DISPLAY VERSE FUNCTION =====
+function displayVerse(index) {
+  const verse = verses[index];
+  const url = `https://www.biblegateway.com/passage/?search=${encodeURIComponent(verse.reference)}&version=NIV&interface=embed`;
+  
+  document.getElementById("dailyVerse").innerHTML = `"${verse.text}" — <a href="#" id="dailyLink">${verse.reference}</a>`;
+  document.getElementById("bibleFrame").src = url;
+
+  // Click daily link to reload in iframe
+  document.getElementById("dailyLink").addEventListener("click", (e) => {
+    e.preventDefault();
+    document.getElementById("bibleFrame").src = url;
+  });
+}
+
+// ===== INITIAL DISPLAY =====
+displayVerse(currentIndex);
+
+// ===== NEXT / PREVIOUS BUTTONS =====
+document.getElementById("nextVerse").addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % verses.length;
+  displayVerse(currentIndex);
+});
+
+document.getElementById("prevVerse").addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + verses.length) % verses.length;
+  displayVerse(currentIndex);
+});
+
+// ===== SEARCH FUNCTION =====
+document.getElementById("searchVerse").addEventListener("click", () => {
+  const input = document.getElementById("verseInput").value.trim();
+  if(input) {
+    const url = `https://www.biblegateway.com/passage/?search=${encodeURIComponent(input)}&version=NIV&interface=embed`;
+    document.getElementById("bibleFrame").src = url;
+  }
+});
+</script>
+
+
+    
+    
+
+    <!-- Event Carousel -->
+     
+    <section class="event-carousel fade-in">
+      <h2>Upcoming Events</h2>
+      <div class="carousel-container">
+        <button class="carousel-btn prev">&lt;</button>
+        <div class="carousel-track" id="carouselTrack">
+          <div class="event-card">
+            <img src="images/churchphotoprayer.jpeg" alt="Prayer Night">
+            <h3>Prayer Night</h3>
+            <p>Join us every Friday at 7 PM for a night of worship and prayer.</p>
+          </div>
+
+
+          <div class="event-card">
+            <img src="images/upcomingfund.jpg" alt="Sanctuary Construction">
+            <h3>funds drive</h3>
+            <p>supporting our sanctuary construction work in progress</p>
+          </div>
+
+          <div class="event-card">
+            <img src="images/pstemis.jpg" alt="Youth Sunday">
+            <h3>Youth Sunday</h3>
+            <p>Celebrating our youth with music, drama, and fellowship.</p>
+          </div>
+          <div class="event-card">
+            <img src="images/marathon4.jpg" alt="Charity Walk">
+            <h3>Charity Walk</h3>
+            <p>Support our outreach program. Saturday, 10 AM at Mutonya Grounds.</p>
+          </div>
+        </div>
+        <button class="carousel-btn next">&gt;</button>
+      </div>
+    </section>
+
+
+
+    <section class="home-ministries">
+  <h2>Our Ministries</h2>
+  <div class="ministries-grid">
+
+    <a href="ministries.html#youth-ministry" class="ministry-card">
+      <img src="images/youth-ministry.jpg" alt="Youth Ministry">
+      <h3>Youth Ministry</h3>
+      <p>“Empowering a generation to live for Christ!”
+      Join us for fun, faith, and fellowship! Dive into Bible studies, community service, leadership training, and exciting activities—all while building lifelong friendships.
+      </p>
+      <span class="learn-more-btn">Learn More</span>
+    </a>
+
+    <a href="ministries.html#women-ministry" class="ministry-card">
+      <img src="images/women-ministry.jpg" alt="Women's Ministry">
+      <h3>Women's Ministry</h3>
+      <p>“Growing in grace, strength, and sisterhood.”
+
+Join a community where women uplift one another, dive into God’s Word, and discover their purpose in Christ.</p>
+      <span class="learn-more-btn">Learn More</span>
+    </a>
+
+    <a href="ministries.html#men-ministry" class="ministry-card">
+      <img src="images/men-ministry.jpg" alt="Men's Ministry">
+      <h3>Men's Ministry</h3>
+      <p>“Strong in spirit. Bold in purpose.” Helping men strengthen their relationship with God and their families.</p>
+      <span class="learn-more-btn">Learn More</span>
+    </a>
+
+    <a href="ministries.html#children-ministry" class="ministry-card">
+      <img src="images/children-ministry.jpg" alt="Children's Ministry">
+      <h3>Children's Ministry</h3>
+      <p>“Little ones, big faith!” Nurturing children in biblical teachings and fostering a love for God.</p>
+      <span class="learn-more-btn">Learn More</span>
+    </a>
+
+    <a href="ministries.html#music-ministry" class="ministry-card">
+      <img src="images/music-ministry.jpg" alt="Music Ministry">
+      <h3>Music Ministry</h3>
+      <p>Leading worship and glorifying God through music and song.</p>
+      <span class="learn-more-btn">Learn More</span>
+    </a>
+
+    <a href="ministries.html#outreach-ministry" class="ministry-card">
+      <img src="images/outreach-ministry.jpg" alt="Outreach Ministry">
+      <h3>Outreach Ministry</h3>
+      <p>Reaching out to the community with love, support, and the message of Christ.</p>
+      <span class="learn-more-btn">Learn More</span>
+    </a>
+
+  </div>
+</section>
+
+
+        <!-- Prayer Request Form -->
+    <section class="prayer-request">
+      <h2>Submit a Prayer Request</h2>
+      <form id="prayerForm">
+        <input type="text" id="prayerName" placeholder="Your Name" required>
+        <input type="tel" id="phone-number" placeholder="Phone Number" required>
+        <textarea id="prayerMessage" placeholder="Your Prayer" required></textarea>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+      <p id="prayerMsg"></p>
+    </section>
+
+  </main>
+
+    <!-- ===== FOOTER ===== -->
+
+  <div id="footer"></div>
+
+  <!-- Main site script -->
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="script.js"></script>
+<script src="index.js" type="module"></script>
+
+  <!-- Footer HTML & CSS injection -->
+
+  <script>
+    document.getElementById("footer").innerHTML = `
+    <style>
+      /* ===== FOOTER STYLES ===== */
+      .footer-container {
+        width: 100%;
+        background: linear-gradient(135deg, #3a005e, #5c0f93, #9d4dff);
+        color: white;
+        padding: 40px 25px 10px;
+        font-family: Arial, sans-serif;
+        margin-top: 60px;
+      }
+      .footer-inner {
+        max-width: 1300px;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        text-align: center;
+      }
+      .footer-logo img {
+        height: 90px;
+        transition: 0.3s ease;
+      }
+      .footer-logo img:hover {
+        transform: scale(1.05);
+      }
+      .footer-section {
+        flex: 1;
+        min-width: 250px;
+        padding: 15px;
+      }
+      .footer-links a {
+        color: #ffdfff;
+        margin: 0 8px;
+        text-decoration: none;
+        font-size: 15px;
+        transition: 0.3s;
+      }
+      .footer-links a:hover {
+        color: white;
+        text-decoration: underline;
+      }
+      .social-icons a svg {
+        width: 32px;
+        height: 32px;
+        margin: 0 8px;
+        fill: white;
+        transition: 0.3s ease;
+      }
+      .social-icons a svg:hover {
+        transform: scale(1.2);
+        fill: #ffe2ff;
+      }
+      .footer-bottom {
+        margin-top: 25px;
+        padding: 10px;
+        border-top: 1px solid #ffffff44;
+        font-size: 13px;
+        text-align: center;
+      }
+      #backToTopBtn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background: #5c0f93;
+        border: none;
+        padding: 12px 15px;
+        border-radius: 50%;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px #00000066;
+        transition: 0.3s ease;
+        display: none;
+        z-index: 9999;
+      }
+      #backToTopBtn:hover {
+        background: #9d4dff;
+        transform: scale(1.1);
+      }
+    </style>
+
+    <footer class="footer-container">
+      <div class="footer-inner">
+        <!-- LOGO -->
+        <div class="footer-section footer-logo">
+          <img src="images/church-logo.jpg" alt="Church Logo">
+          <h3 style="margin: 10px 0 0; font-size: 20px;">FGCK NAZARETH CHURCH</h3>
+          <p>Serving God • Loving People • Transforming Lives</p>
+        </div>
+
+        <!-- MINISTRY LINKS -->
+        <div class="footer-section">
+          <h3>Ministry Links</h3>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="departments.html">Departments</a>
+            <a href="media.html">Media</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <!-- SOCIAL ICONS -->
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-icons">
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24">
+                <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H8.1v-2.9h2.34V9.83c0-2.33 1.39-3.62 3.52-3.62 1.02 0 2.09.18 2.09.18v2.3h-1.18c-1.16 0-1.52.72-1.52 1.46v1.75h2.59l-.41 2.9h-2.18V22c4.78-.75 8.44-4.91 8.44-9.93z"/>
+              </svg>
+            </a>
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24">
+                <path d="M10 15l5.19-3L10 9v6zm12-3c0-2.76-2.24-5-5-5H7C4.24 7 2 9.24 2 12s2.24 5 5 5h10c2.76 0 5-2.24 5-5z"/>
+              </svg>
+            </a>
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24">
+                <path d="M20.52 3.48A11.78 11.78 0 0 0 12.04 0C5.66 0 .52 5.17.52 11.54c0 2.03.53 4.03 1.53 5.8L0 24l6.88-1.99c1.7.93 3.61 1.42 5.56 1.41h.01c6.38 0 11.52-5.17 11.52-11.54c0-3.07-1.17-5.96-3.45-8.4zM12.05 21.3h-.01c-1.74 0-3.44-.47-4.93-1.36l-.35-.2l-4.08 1.18l1.13-3.94l-.23-.4a9.45 9.45 0 0 1-1.4-4.94c0-5.22 4.25-9.47 9.47-9.47c2.53 0 4.92.99 6.72 2.78a9.44 9.44 0 0 1 2.78 6.7c0 5.22-4.25 9.47-9.47 9.47zm5.48-7.12c-.3-.15-1.77-.87-2.04-.97c-.27-.1-.47-.15-.66.15c-.19.3-.76.97-.93 1.17c-.17.2-.34.22-.64.07c-.3-.15-1.27-.47-2.42-1.48c-.89-.79-1.49-1.76-1.67-2.06c-.17-.3-.02-.46.13-.61c.13-.12.3-.32.45-.48c.15-.16.2-.27.3-.46c.1-.2.05-.35-.03-.5c-.08-.15-.66-1.6-.91-2.2c-.24-.57-.49-.5-.66-.51h-.57c-.19 0-.5.07-.76.35c-.26.28-1 1-1 2.43s1.03 2.83 1.18 3.03c.15.2 2.03 3.1 5 4.35c.7.3 1.25.48 1.68.62c.7.22 1.34.19 1.85.11c.56-.08 1.77-.72 2.02-1.42c.25-.7.25-1.29.18-1.42c-.08-.13-.27-.2-.57-.35z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2025 FGCK Nazareth Church — All Rights Reserved
+      </div>
+
+      <button id="backToTopBtn">⬆</button>
+
+    </footer>
+    `;
+  </script>
+
+  <!-- Back to Top JS -->
+  <script>
+    const btn = document.getElementById("backToTopBtn");
+    window.onscroll = () => {
+      btn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+    };
+    btn.onclick = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+  </script>
+
+</body>
+</html>
